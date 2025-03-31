@@ -14,12 +14,16 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='zeid',
-    maintainer_email='adon.sf4@gmail.com',
-    description='TODO: Package description',
+    maintainer_email='zeidk@umd.edu',
+    description='Demo showing the use of single-threaded and multi-threaded executors',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'dual_mutex_demo = executors_demo.dual_mutex_demo:main',
+            'reentrant_mutex_demo = executors_demo.reentrant_mutex_demo:main',
+            'reentrant_only_demo = executors_demo.reentrant_only_demo:main',
+            'singlethreaded_demo = executors_demo.singlethreaded_demo:main',
         ],
     },
 )
