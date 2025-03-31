@@ -3,8 +3,8 @@
 <package format="3">
   <name>qos_demo</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="adon.sf4@gmail.com">zeid</maintainer>
+  <description>Demonstration of Quality of Service (QoS)</description>
+  <maintainer email="zeidk@umd.edu">zeid kootbally</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>

@@ -3,8 +3,8 @@
 <package format="3">
   <name>executors_demo</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="adon.sf4@gmail.com">zeid</maintainer>
+  <description>Demo showing the use of single-threaded and multi-threaded executors</description>
+  <maintainer email="zeidk@umd.edu">zeid kootbally</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
