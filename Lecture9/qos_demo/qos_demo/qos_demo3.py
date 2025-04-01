@@ -8,13 +8,13 @@ class BestEffortPublisherNode(Node):
         super().__init__('best_effort_publisher')
         qos = QoSProfile(depth=10, reliability=QoSReliabilityPolicy.BEST_EFFORT)
         self._status_msg_msg = String()
-        self._status_msg_pub = self.create_publisher(String, 'status_msg', qos)
+        self._status_msg_publisher = self.create_publisher(String, 'status_msg', qos)
         self._status_msg_timer = self.create_timer(0.5, self._status_msg_timer_callback)
         self._count = 0
 
     def _status_msg_timer_callback(self):
         self._status_msg_msg.data = f"status {self._count}"
-        self._status_msg_pub.publish(self._status_msg_msg)
+        self._status_msg_publisher.publish(self._status_msg_msg)
         self.get_logger().info(f"Published: {self._status_msg_msg.data}")
         self._count += 1
 
@@ -23,9 +23,9 @@ class ReliableSubscriberNode(Node):
     def __init__(self):
         super().__init__('reliable_subscriber')
         qos = QoSProfile(depth=10, reliability=QoSReliabilityPolicy.RELIABLE)
-        self._status_msg_sub = self.create_subscription(String, 'status_msg', self._status_msg_callback, qos)
+        self._status_msg_subscriber = self.create_subscription(String, 'status_msg', self._status_msg_sub_callback, qos)
 
-    def _status_msg_callback(self, msg):
+    def _status_msg_sub_callback(self, msg):
         self.get_logger().info(f"Received: {msg.data}")
 
 

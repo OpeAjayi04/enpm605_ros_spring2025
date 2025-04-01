@@ -46,6 +46,10 @@ class ReentrantMutexDemoNode(Node):
         Callback function for timer3
         """
         self.get_logger().info(Color.GREEN + "Timer3 callback" + Color.RESET)
+        # time.sleep(10)
+        while True:
+            pass
+        
 
     def timer4_callback(self):
         """

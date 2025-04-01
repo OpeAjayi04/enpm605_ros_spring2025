@@ -9,12 +9,12 @@ class LocalizationDemo(LifecycleNode):
     def __init__(self):
         super().__init__('localization_demo')
         self._sensor_ready = False
-        self._sensor_data_sub = None
-        self._localization_status_pub = None
+        self._sensor_data_subscriber = None
+        self._localization_status_publisher = None
 
     def on_configure(self, state: State):
         self.get_logger().info('Configuring localization_demo...')
-        self._sensor_data_sub = self.create_subscription(String, 'sensor_data', self._sensor_data_callback, 10)
+        self._sensor_data_subscriber = self.create_subscription(String, 'sensor_data', self._sensor_data_sub_callback, 10)
         return TransitionCallbackReturn.SUCCESS
 
     def on_activate(self, state: State):
@@ -27,17 +27,17 @@ class LocalizationDemo(LifecycleNode):
             reliability=QoSReliabilityPolicy.RELIABLE
         )
 
-        self._localization_status_pub = self.create_publisher(String, 'localization_status', qos)
+        self._localization_status_publisher = self.create_publisher(String, 'localization_status', qos)
 
         # Publish latched "ready" message
         msg = String()
         msg.data = 'localization ready'
-        self._localization_status_pub.publish(msg)
+        self._localization_status_publisher.publish(msg)
         self.get_logger().info(f'Published: {msg.data} (latched)')
         
         return TransitionCallbackReturn.SUCCESS
 
-    def _sensor_data_callback(self, msg):
+    def _sensor_data_sub_callback(self, msg):
         if msg.data == 'sensor ready' and not self._sensor_ready:
             self.get_logger().info('Sensor is ready → Activating localization_demo')
             self._sensor_ready = True
