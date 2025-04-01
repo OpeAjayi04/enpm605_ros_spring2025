@@ -36,7 +36,7 @@ class SingleThreadedDemoNode(Node):
         Callback function for timer2
         """
         self.get_logger().info(Color.BLUE + "Timer2 callback" + Color.RESET)
-        # time.sleep(2)
+        # time.sleep(10)
         # while True:
         #     pass
 
@@ -64,6 +64,7 @@ def main(args=None):
 
     executor = SingleThreadedExecutor()  # Explicit executor
     executor.add_node(node)
+
     try:
         executor.spin()
     except KeyboardInterrupt:

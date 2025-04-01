@@ -8,11 +8,9 @@ from rclpy.qos import QoSProfile, QoSDurabilityPolicy, QoSReliabilityPolicy
 class NavigationDemo(LifecycleNode):
     def __init__(self):
         super().__init__('navigation_demo')
-        # self.loc_ready = False
-        self._localization_status_sub = None
+        self._localization_status_subscriber = None
         self._activated = False
         self._drive_timer = None
-        # self._sensor_data_sub = None
 
     def on_configure(self, state: State):
         self.get_logger().info('Configuring navigation_demo...')
@@ -23,12 +21,12 @@ class NavigationDemo(LifecycleNode):
             reliability=QoSReliabilityPolicy.RELIABLE
         )
 
-        self._localization_status_sub = self.create_subscription(
-            String, 'localization_status', self._localization_callback, qos
+        self._localization_status_subscriber = self.create_subscription(
+            String, 'localization_status', self._localization_status_sub_callback, qos
         )
         return TransitionCallbackReturn.SUCCESS
     
-    def _localization_callback(self, msg):
+    def _localization_status_sub_callback(self, msg):
         if msg.data == 'localization ready' and not self._activated:
             self.get_logger().info('Localization ready → Activating navigation_demo')
             self._activated = True
@@ -36,10 +34,10 @@ class NavigationDemo(LifecycleNode):
             
     def on_activate(self, state: State):
         self.get_logger().info('Activating navigation_demo...')
-        self._drive_timer = self.create_timer(1.5, self._drive_callback)
+        self._drive_timer = self.create_timer(0.3, self._drive_timer_callback)
         return TransitionCallbackReturn.SUCCESS
 
-    def _drive_callback(self):
+    def _drive_timer_callback(self):
         self.get_logger().info('Driving to goal...')
 
     

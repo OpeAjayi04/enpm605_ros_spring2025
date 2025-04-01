@@ -38,7 +38,7 @@ class DualMutexDemoNode(Node):
         Callback function for timer2
         """
         self.get_logger().info(Color.BLUE + "Timer2 callback" + Color.RESET)
-        # time.sleep(10)
+        time.sleep(10)
 
     def timer3_callback(self):
         """
