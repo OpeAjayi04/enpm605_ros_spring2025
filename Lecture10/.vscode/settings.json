@@ -1,0 +1,40 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/zeid/github/ros605_ws/build/launch_files_demo",
+        "/home/zeid/github/ros605_ws/install/launch_files_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/subscriber_demo",
+        "/home/zeid/github/ros605_ws/install/subscriber_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/qos_demo",
+        "/home/zeid/github/ros605_ws/install/qos_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/publisher_demo",
+        "/home/zeid/github/ros605_ws/install/publisher_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/managed_nodes_demo",
+        "/home/zeid/github/ros605_ws/install/managed_nodes_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/first_pkg",
+        "/home/zeid/github/ros605_ws/install/first_pkg/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/executors_demo",
+        "/home/zeid/github/ros605_ws/install/executors_demo/lib/python3.10/site-packages",
+        "/home/zeid/ros605_ws/build/first_pkg",
+        "/home/zeid/ros605_ws/install/first_pkg/lib/python3.10/site-packages",
+        "/opt/ros/iron/lib/python3.10/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/zeid/github/ros605_ws/build/launch_files_demo",
+        "/home/zeid/github/ros605_ws/install/launch_files_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/subscriber_demo",
+        "/home/zeid/github/ros605_ws/install/subscriber_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/qos_demo",
+        "/home/zeid/github/ros605_ws/install/qos_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/publisher_demo",
+        "/home/zeid/github/ros605_ws/install/publisher_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/managed_nodes_demo",
+        "/home/zeid/github/ros605_ws/install/managed_nodes_demo/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/first_pkg",
+        "/home/zeid/github/ros605_ws/install/first_pkg/lib/python3.10/site-packages",
+        "/home/zeid/github/ros605_ws/build/executors_demo",
+        "/home/zeid/github/ros605_ws/install/executors_demo/lib/python3.10/site-packages",
+        "/home/zeid/ros605_ws/build/first_pkg",
+        "/home/zeid/ros605_ws/install/first_pkg/lib/python3.10/site-packages",
+        "/opt/ros/iron/lib/python3.10/site-packages"
+    ]
+}
