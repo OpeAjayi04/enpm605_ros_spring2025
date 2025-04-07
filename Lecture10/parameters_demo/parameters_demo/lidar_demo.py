@@ -161,7 +161,7 @@ class LidarDemoNode(Node):
         
         # Publish the message
         self._data_lidar_publisher.publish(self._data_lidar_msg)
-        self.get_logger().info(f'{Color.GREEN}Published random lidar ({self._lidar_model}) scan to: {Color.RESET}{Color.RED}{self._lidar_name}{Color.RESET}')
+        self.get_logger().info(f'{Color.GREEN}Published random lidar ({self._lidar_model}) scan from: {Color.RESET}{Color.RED}{self._lidar_name}{Color.RESET}')
 
 
 def main(args=None):

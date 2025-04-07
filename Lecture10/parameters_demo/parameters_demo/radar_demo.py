@@ -178,7 +178,7 @@ class RadarScanDemoNode(Node):
         # Publish the message
         self._radar_tracks_publisher.publish(self._radar_msg)
         self.get_logger().info(
-            f"{Color.YELLOW}Published random radar scan with {num_returns} returns{Color.RESET} to: {Color.RESET}{Color.RED}{self._radar_name}{Color.RESET}"
+            f"{Color.YELLOW}Published random radar scan with {num_returns} returns{Color.RESET} from: {Color.RESET}{Color.RED}{self._radar_name}{Color.RESET}"
         )
 
 
