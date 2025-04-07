@@ -186,17 +186,16 @@ class CameraDemoNode(Node):
         self._data_camera_publisher.publish(self._data_camera_msg)
 
         self.get_logger().info(
-            f"{Color.PURPLE}Published frame #{self._frame_counter} to:{Color.RESET} {Color.RED}{self._camera_name}{Color.RESET}"
+            f"{Color.PURPLE}Published random camera data from:{Color.RESET} {Color.RED}{self._camera_name}{Color.RESET}"
         )
 
-        self.get_logger().info(f"Image published from:{self._camera_name}")
 
-        # Only log every 10th or 20th frame
-        if self._frame_counter % 20 == 0:
-            self.get_logger().info(
-                f"{Color.PURPLE}Published frame #{self._frame_counter} from:{Color.RESET} {Color.RED}{self._camera_name}{Color.RESET}"
-            )
-        self._frame_counter += 1
+        # # Only log every 10th or 20th frame
+        # if self._frame_counter % 20 == 0:
+        #     self.get_logger().info(
+        #         f"{Color.PURPLE}Published frame #{self._frame_counter} from:{Color.RESET} {Color.RED}{self._camera_name}{Color.RESET}"
+        #     )
+        # self._frame_counter += 1
 
 
 def main(args=None):
