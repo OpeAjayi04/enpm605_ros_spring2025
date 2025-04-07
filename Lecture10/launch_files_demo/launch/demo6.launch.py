@@ -19,12 +19,12 @@ def generate_launch_description():
     nav_sensor_group = GroupAction(
         actions=[
             Node(
-                package='sensor_demo_pkg', 
+                package='launch_files_demo', 
                 executable='lidar_demo',
                 output='screen'
                 ),
             Node(
-                package='sensor_demo_pkg',
+                package='launch_files_demo',
                 executable='camera_demo',
                 output='screen'
             )
@@ -38,7 +38,7 @@ def generate_launch_description():
 
     # Add a temperature node (always launched, not conditional)
     temperature_node = Node(
-        package='sensor_demo_pkg',
+        package='launch_files_demo',
         executable='temperature_demo',
         output='screen'
     )
