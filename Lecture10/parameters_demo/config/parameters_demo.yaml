@@ -1,0 +1,19 @@
+camera_demo:  # Name of the node
+  ros__parameters:
+    camera_name: 'front_camera'
+    camera_rate: 30
+
+lidar_demo:  # Name of the node
+  ros__parameters:
+    lidar_name: 'top_lidar'
+    lidar_rate: 20
+
+radar_demo:  # Name of the node
+  ros__parameters:
+    radar_name: 'front_radar'
+    radar_rate: 60
+
+processing_demo:  # Name of the node
+  ros__parameters:
+    processing_mode: 'all'
+    processing_rate: 10

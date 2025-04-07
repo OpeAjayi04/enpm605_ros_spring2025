@@ -32,7 +32,7 @@ def generate_launch_description():
 
     # Define the nodes
     lidar1_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="lidar_demo",
         name="lidar1_demo",
         remappings=[
@@ -40,17 +40,17 @@ def generate_launch_description():
         ],
     )
     lidar2_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="lidar_demo",
         name="lidar2_demo",
         remappings=[
             ("scan", lidar2_scan_topic),  # Use argument for topic remapping
         ],
     )
-    camera_node = Node(package="sensor_demo_pkg", executable="camera_demo")
-    temperature_node = Node(package="sensor_demo_pkg", executable="temperature_demo")
+    camera_node = Node(package="launch_files_demo", executable="camera_demo")
+    temperature_node = Node(package="launch_files_demo", executable="temperature_demo")
     processing1_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="processing_demo",
         name="processing1_demo",
         remappings=[
@@ -59,7 +59,7 @@ def generate_launch_description():
     )
     
     processing2_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="processing_demo",
         name="processing2_demo",
         remappings=[

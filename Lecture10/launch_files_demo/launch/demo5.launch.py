@@ -7,11 +7,11 @@ def generate_launch_description():
 
     # Nodes needed for navigation
     navigation_group = GroupAction([
-        Node(package='sensor_demo_pkg', executable='lidar_demo'),
-        Node(package='sensor_demo_pkg', executable='camera_demo')
+        Node(package='launch_files_demo', executable='lidar_demo'),
+        Node(package='launch_files_demo', executable='camera_demo')
     ])
     
-    temperature_node = Node(package='sensor_demo_pkg', executable='temperature_demo')
+    temperature_node = Node(package='launch_files_demo', executable='temperature_demo')
 
     ld.add_action(navigation_group)
     # ld.add_action(temperature_node)

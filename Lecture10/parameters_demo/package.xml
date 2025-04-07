@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>launch_files_demo</name>
+  <name>parameters_demo</name>
   <version>0.0.1</version>
-  <description>Demonstration of launch file features</description>
+  <description>An educational ROS2 package demonstrating parameter usage through sensor simulation. This package illustrates how to define, declare, get, and dynamically reconfigure parameters in ROS2 nodes. Students will learn how to customize node behavior at launch time and during runtime using the parameter system, focusing on practical applications through sensor simulation.</description>
+ 
   <maintainer email="zeidk@umd.edu">zeid kootbally</maintainer>
   <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>sensor_msgs</depend>
+  <depend>radar_msgs</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

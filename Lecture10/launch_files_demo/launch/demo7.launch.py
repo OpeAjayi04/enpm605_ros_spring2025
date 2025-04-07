@@ -6,7 +6,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     ld = LaunchDescription()
     lidar1_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="lidar_demo",
         name="lidar1_demo", # Node remapping
         remappings=[
@@ -14,7 +14,7 @@ def generate_launch_description():
         ],
     )
     lidar2_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="lidar_demo",
         name="lidar2_demo", # Node remapping
         remappings=[
@@ -23,17 +23,17 @@ def generate_launch_description():
     )
     
     camera_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="camera_demo"
     )
     
     temperature_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="temperature_demo"
     )
     
     processing1_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="processing_demo",
         name="processing1_demo",
         remappings=[
@@ -42,7 +42,7 @@ def generate_launch_description():
     )
     
     processing2_node = Node(
-        package="sensor_demo_pkg",
+        package="launch_files_demo",
         executable="processing_demo",
         name="processing2_demo",
         remappings=[

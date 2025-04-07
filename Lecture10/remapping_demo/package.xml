@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>launch_files_demo</name>
+  <name>remapping_demo</name>
   <version>0.0.1</version>
-  <description>Demonstration of launch file features</description>
+  <description> A ROS 2 package demonstrating node, topic, and parameter name remapping. This
+    package provides a camera node that can be instantiated multiple times with different names,
+    topics, and parameter values. It serves as an educational resource showing how to use ROS 2's
+    remapping capabilities to create flexible and reusable nodes. </description>
   <maintainer email="zeidk@umd.edu">zeid kootbally</maintainer>
   <license>MIT</license>
 
