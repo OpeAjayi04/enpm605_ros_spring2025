@@ -65,7 +65,7 @@
     </model>
 
     <model name="red_cube">
-      <pose>-0.5 0.5 0.1 0 0 0</pose>
+      <pose>-1 1 0.1 0 0 0</pose>
       <static>true</static>
       <link name="link">
         <visual name="visual">
@@ -84,7 +84,7 @@
     </model>
 
     <model name="blue_cube">
-      <pose>1 1 0.1 0 0 0</pose>
+      <pose>-1 0.5 0.1 0 0 0</pose>
       <static>true</static>
       <link name="link">
         <visual name="visual">
@@ -122,7 +122,7 @@
     </model>
 
     <model name="yellow_cube">
-      <pose>1 -1 0.1 0 0 0</pose>
+      <pose>-1 -0.5 0.1 0 0 0</pose>
       <static>true</static>
       <link name="link">
         <visual name="visual">

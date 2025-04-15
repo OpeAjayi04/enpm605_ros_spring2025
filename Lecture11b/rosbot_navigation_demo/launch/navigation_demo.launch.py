@@ -17,15 +17,20 @@ def generate_launch_description():
     map_frame_arg = DeclareLaunchArgument(
         "map_frame", default_value="odom", description="Frame ID for the map"
     )
-
     rotation_speed_arg = DeclareLaunchArgument(
         "rotation_speed",
         default_value="0.3",
         description="Robot rotation speed when searching for color",
     )
-
     target_color_arg = DeclareLaunchArgument(
-        "target_color", default_value="red", description="Target color for navigation"
+        "target_color",
+        default_value="red",
+        description="Target color for navigation (red, blue, green, or yellow)",
+    )
+    min_detection_area_arg = DeclareLaunchArgument(
+        "min_detection_area",
+        default_value="30",
+        description="Minimum area for color detection in pixels",
     )
 
     # Nodes
@@ -35,11 +40,23 @@ def generate_launch_description():
         output="screen",
         parameters=[
             {
+                "target_color": LaunchConfiguration("target_color"),
+                # Red color parameters (special case with two ranges)
                 "red_lower_hsv": [0, 30, 30],
                 "red_upper_hsv": [15, 255, 255],
                 "red_lower_hsv2": [160, 30, 30],
                 "red_upper_hsv2": [179, 255, 255],
-                "min_detection_area": 30,
+                # Blue color parameters
+                "blue_lower_hsv": [100, 30, 30],
+                "blue_upper_hsv": [130, 255, 255],
+                # Green color parameters
+                "green_lower_hsv": [40, 30, 30],
+                "green_upper_hsv": [80, 255, 255],
+                # Yellow color parameters
+                "yellow_lower_hsv": [20, 30, 30],
+                "yellow_upper_hsv": [35, 255, 255],
+                # Other parameters
+                "min_detection_area": LaunchConfiguration("min_detection_area"),
                 "rotation_speed": LaunchConfiguration("rotation_speed"),
                 "rotation_timer_period": 0.1,
             }
@@ -65,6 +82,9 @@ def generate_launch_description():
                 "cooldown_seconds": 5.0,
                 "distance_tolerance": 0.1,
                 "angle_tolerance": 0.05,
+                "navigation_timeout": 60.0,
+                "min_confidence": 0.0,  # Lower to detect any color presence
+                "expected_frame_id": LaunchConfiguration("map_frame"),
             }
         ],
     )
@@ -78,8 +98,9 @@ def generate_launch_description():
                 "kp_linear": 0.5,
                 "kp_angular": 1.0,
                 "default_linear_tolerance": 0.1,
-                "default_angular_tolerance": 0.05,
+                "default_angular_tolerance": 0.2,
                 "control_frequency": 20.0,
+                "goal_timeout": 60.0,
             }
         ],
     )
@@ -91,6 +112,7 @@ def generate_launch_description():
     ld.add_action(map_frame_arg)
     ld.add_action(rotation_speed_arg)
     ld.add_action(target_color_arg)
+    ld.add_action(min_detection_area_arg)
 
     # Add nodes
     ld.add_action(color_beacon_node)
