@@ -1,0 +1,5 @@
+string color
+---
+geometry_msgs/PoseStamped goal_pose
+bool success
+string message
