@@ -71,7 +71,7 @@ class MoveToGoalActionServer(Node):
         self._action_server = ActionServer(
             self,
             MoveToGoal,
-            "move_to_goal",
+            "/move_to_goal",
             execute_callback=self._execute_callback,
             goal_callback=self._goal_callback,
             cancel_callback=self._cancel_callback,
@@ -81,7 +81,7 @@ class MoveToGoalActionServer(Node):
         # Create the timer for the proportional controller
         self._control_timer = self.create_timer(0.1, self._control_timer_callback)  # 10Hz control loop
 
-        self.get_logger().info("MoveToGoalActionServer initialized")
+        self.get_logger().info("move_to_goal_action_server initialized")
 
     # -------------------- Callbacks --------------------
     def _control_timer_callback(self):
@@ -405,7 +405,3 @@ def main(args=None):
         node._stop_robot()
         node.destroy_node()
         rclpy.shutdown()
-
-
-if __name__ == "__main__":
-    main()

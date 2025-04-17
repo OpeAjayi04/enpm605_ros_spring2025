@@ -22,6 +22,9 @@ def generate_launch_description():
         default_value="0.3",
         description="Robot rotation speed when searching for color",
     )
+    service_call_type_arg = DeclareLaunchArgument(
+        "service_call_type", default_value="async", description="Type of service call (async or sync)"
+    )
     target_color_arg = DeclareLaunchArgument(
         "target_color",
         default_value="red",
@@ -31,9 +34,6 @@ def generate_launch_description():
         "min_detection_area",
         default_value="30",
         description="Minimum area for color detection in pixels",
-    )
-    service_call_type_arg = DeclareLaunchArgument(
-        "service_call_type", default_value="async", description="Type of service call (async or sync)"
     )
 
     # Nodes
@@ -98,7 +98,7 @@ def generate_launch_description():
             }
         ],
     )
-
+    
     move_to_goal_action_node = Node(
         package="rosbot_navigation_demo",
         executable="move_to_goal_action_demo",
@@ -115,6 +115,7 @@ def generate_launch_description():
         ],
     )
 
+
     # Create launch description
     ld = LaunchDescription()
 
@@ -126,7 +127,7 @@ def generate_launch_description():
     ld.add_action(service_call_type_arg)
 
     # Add nodes
-    ld.add_action(cube_publisher_node)
+    # ld.add_action(cube_publisher_node)
     ld.add_action(color_beacon_node)
     ld.add_action(get_goal_service_node)
     ld.add_action(move_to_goal_action_node)

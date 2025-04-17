@@ -12,9 +12,16 @@ from std_msgs.msg import Header
 class ColorBeacon(Node):
     def __init__(self):
         super().__init__("color_beacon_demo")
+        
+        self._color_map = {
+            "red": ColorData.RED,
+            "green": ColorData.GREEN,
+            "blue": ColorData.BLUE,
+            "yellow": ColorData.YELLOW,
+        }
 
         # Parameters for various colors
-        self.declare_parameter("target_color", "red")
+        self.declare_parameter("target_color", "blue")
         self.declare_parameter("red_lower_hsv", [0, 30, 30])
         self.declare_parameter("red_upper_hsv", [15, 255, 255])
         self.declare_parameter("red_lower_hsv2", [160, 30, 30])
@@ -87,7 +94,10 @@ class ColorBeacon(Node):
 
             # Define detection functions for each color
             color_detectors = {
-                "red": self._detect_red,
+                # "red": self._detect_red,
+                "red": lambda img: self._detect_color(
+                    img, self._red_lower_hsv, self._red_upper_hsv
+                ),
                 "blue": lambda img: self._detect_color(
                     img, self._blue_lower_hsv, self._blue_upper_hsv
                 ),
@@ -110,7 +120,8 @@ class ColorBeacon(Node):
                     color_msg.header = Header()
                     color_msg.header.stamp = self.get_clock().now().to_msg()
                     color_msg.header.frame_id = msg.header.frame_id
-                    color_msg.color = self._target_color
+                    # color_msg.color = self._target_color
+                    color_msg.color = self._color_map[self._target_color]
                     color_msg.confidence = min(1.0, area / 10000)
                     color_msg.area = area
                     self._color_pub.publish(color_msg)
@@ -275,6 +286,3 @@ def main(args=None):
             color_beacon.destroy_node()
         rclpy.shutdown()
 
-
-if __name__ == "__main__":
-    main()
