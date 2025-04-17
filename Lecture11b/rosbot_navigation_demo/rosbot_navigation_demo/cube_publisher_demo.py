@@ -44,14 +44,14 @@ class CubePublisher(Node):
     def publish_cubes(self):
         self.publish_cube(
             id=0,
-            position=[-0.5, 0.5, 0.1],
+            position=[-1.0, 1.0, 0.1],
             color=[1.0, 0.0, 0.0, 1.0],  # Red
             size=[0.1, 0.1, 0.1],
             namespace='floating_cubes'
         )
         self.publish_cube(
             id=1,
-            position=[1.0, 1.0, 0.1],
+            position=[-1.0, 0.5, 0.1],
             color=[0.0, 0.0, 1.0, 1.0],  # Blue
             size=[0.1, 0.1, 0.1],
             namespace='floating_cubes'
@@ -65,7 +65,7 @@ class CubePublisher(Node):
         )
         self.publish_cube(
             id=3,
-            position=[1.0, -1.0, 0.1],
+            position=[-1.0, -0.5, 0.1],
             color=[1.0, 1.0, 0.0, 1.0],  # Yellow
             size=[0.1, 0.1, 0.1],
             namespace='floating_cubes'

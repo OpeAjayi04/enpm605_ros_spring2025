@@ -28,9 +28,9 @@ setup(
             "cube_publisher_demo = rosbot_navigation_demo.cube_publisher_demo:main",
             "pid_controller_demo = rosbot_navigation_demo.pid_controller_demo:main",
             "color_beacon_demo = rosbot_navigation_demo.color_beacon_demo:main",
-            "goal_provider_service_demo = rosbot_navigation_demo.goal_provider_service_server_demo:main",
-            "move_to_goal_action_demo = rosbot_navigation_demo.move_to_goal_action_server_demo:main",
-            "navigation_controller_demo = rosbot_navigation_demo.navigation_controller_demo:main",
+            "get_goal_service_demo = rosbot_navigation_demo.get_goal_service_demo:main",
+            "move_to_goal_action_demo = rosbot_navigation_demo.move_to_goal_action_demo:main",
+            "navigation_manager_demo = rosbot_navigation_demo.navigation_manager_demo:main",
         ],
     },
 )

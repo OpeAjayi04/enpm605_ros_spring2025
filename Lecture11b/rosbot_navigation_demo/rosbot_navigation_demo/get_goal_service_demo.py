@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import rclpy
 from rclpy.node import Node
 from rosbot_interfaces.srv import GetGoal
@@ -7,11 +5,11 @@ from geometry_msgs.msg import PoseStamped
 import yaml
 import os
 from ament_index_python.packages import get_package_share_directory
-
+import time
 
 class GoalProviderService(Node):
     def __init__(self):
-        super().__init__("goal_provider_service_demo")
+        super().__init__("get_goal_service_demo")
 
         # Parameters
         self.declare_parameter("goals_file", "goals.yaml")
@@ -28,7 +26,7 @@ class GoalProviderService(Node):
             GetGoal, "/get_goal", self._handle_get_goal_request
         )
 
-        self.get_logger().info("GoalProvider node initialized")
+        self.get_logger().info("get_goal_service_demo node initialized")
         self.get_logger().info(f"Loaded {len(self._goals)} predefined goals")
 
     def _load_goals(self):
@@ -41,7 +39,7 @@ class GoalProviderService(Node):
         # If not an absolute path, check in the package share directory
         if not os.path.isabs(goals_path):
             try:
-                package_dir = get_package_share_directory("rosbot_interaction_demo")
+                package_dir = get_package_share_directory("rosbot_navigation_demo")
                 goals_path = os.path.join(package_dir, "config", goals_path)
             except Exception as e:
                 self.get_logger().warn(f"Failed to locate package directory: {e}")
@@ -53,16 +51,20 @@ class GoalProviderService(Node):
             )
             # Default goals if file not found
             goals = {
-                "red": {
+                "0": {
                     "position": {"x": 1.0, "y": 0.0, "z": 0.0},
                     "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0},
                 },
-                "green": {
+                "1": {
                     "position": {"x": 0.0, "y": 1.0, "z": 0.0},
                     "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0},
                 },
-                "blue": {
+                "2": {
                     "position": {"x": -1.0, "y": 0.0, "z": 0.0},
+                    "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0},
+                },
+                "3": {
+                    "position": {"x": 4.0, "y": -2.0, "z": 0.0},
                     "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0},
                 },
             }
@@ -89,7 +91,8 @@ class GoalProviderService(Node):
 
     def _handle_get_goal_request(self, request, response):
         """Handle GetGoal service request"""
-        color = request.color.lower()
+        # time.sleep(10)
+        color = request.color
 
         if color in self._goals:
             goal_data = self._goals[color]
@@ -137,7 +140,3 @@ def main(args=None):
     finally:
         goal_provider.destroy_node()
         rclpy.shutdown()
-
-
-if __name__ == "__main__":
-    main()

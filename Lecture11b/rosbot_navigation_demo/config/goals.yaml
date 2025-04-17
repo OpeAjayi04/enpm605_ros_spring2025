@@ -1,4 +1,4 @@
-red:
+0:
   position:
     x: 3.5
     y: 3.5
@@ -10,7 +10,7 @@ red:
     w: 1.0
   description: "Red goal position"
 
-green:
+1:
   position:
     x: 0.0
     y: 3.5
@@ -22,7 +22,7 @@ green:
     w: 0.7071
   description: "Green goal position"
 
-blue:
+2:
   position:
     x: -2.0
     y: -1.5
@@ -34,7 +34,7 @@ blue:
     w: 0.7071
   description: "Blue goal position"
 
-yellow:
+3:
   position:
     x: 4.0
     y: -2.0
