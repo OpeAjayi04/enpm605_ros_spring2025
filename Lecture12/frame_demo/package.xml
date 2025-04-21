@@ -16,7 +16,6 @@
   <depend>python_orocos_kdl_vendor</depend>
   <depend>tf2_ros</depend>
   <depend>rosbot_interfaces</depend>
-  <depend>aruco_marker_interfaces</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
