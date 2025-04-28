@@ -91,7 +91,7 @@ class GoalProviderService(Node):
 
     def _handle_get_goal_request(self, request, response):
         """Handle GetGoal service request"""
-        # time.sleep(10)
+        time.sleep(10)
         color = request.color
 
         if color in self._goals:
