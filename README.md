@@ -5,7 +5,16 @@ ROS packages for ENPM605 (Spring 2025)
 
 ## ros2-system-monitor
 
-## rosgpt
+- Source: [ros2_system_monitor](https://github.com/AgoraRobotics/ros2-system-monitor)
+### Build and Run
+
+```bash 
+colcon build --symlink-install --packages-select ros2_system_monitor
+source install/setup.bash
+ros2 launch ros2_system_monitor system_monitor.launch.py
+# Check the /diagnostics topic
+ros2 topic echo /diagnostics
+```
 
 ## ROSAnthropic Nav2
 
@@ -17,6 +26,12 @@ ROSAnthropic Nav2 creates a bridge between natural language commands and robotic
 
 The system leverages Anthropic's Claude AI to parse natural language commands and convert them into structured navigation instructions that the Navigation2 stack can execute.
 
+### Environment Setup
+
+```bash 
+# Set up Anthropic API key
+export ANTHROPIC_API_KEY=your_anthropic_api_key
+```
 ### Features
 
 - Natural language command interpretation
@@ -126,7 +141,6 @@ pip install anthropic flask flask-restful flask-cors rclpy requests pyttsx3 tran
 
 #### ROS2 Dependencies
 
-- Pull packages from the repository.
 ```bash
 # Install missing dependencies
 rosdep install --from-paths src -y --ignore-src
