@@ -53,7 +53,7 @@ class ROSAnthropicNav2Control(Node):
         # Map of named locations to coordinates (x, y, orientation)
         self.locations = {
             "top_right_corner": (9.5, -9.5, 0.0),
-            "top_left_corner": (9.5, 9.5, 0.0),
+            "top_left_corner": (10.06, 8.84, 0.0),
             "bottom_left_corner": (-9.5, 9.5, 0.0),
             "bottom_right_corner": (-9.5, -9.5, 0.0),
             "top_h": (-8.97, -12.97, 0.0),

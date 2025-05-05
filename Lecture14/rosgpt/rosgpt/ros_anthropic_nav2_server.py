@@ -239,20 +239,20 @@ class ROSAnthropicProxy(Resource):
         
         user_examples = """
         Example 1:
-        Human prompt: "Go to the kitchen"
-        JSON response: {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "kitchen"}}}
+        Human prompt: "Go to top right corner"
+        JSON response: {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "top_right_corner"}}}
 
         Example 2:
-        Human prompt: "Follow a path through the kitchen, living room, and bedroom"
-        JSON response: {"action": "follow_path", "params": {"locations": [{"type": "str", "value": "kitchen"}, {"type": "str", "value": "living room"}, {"type": "str", "value": "bedroom"}]}}
+        Human prompt: "Follow a path through top right corner, top left corner, and top h"
+        JSON response: {"action": "follow_path", "params": {"locations": [{"type": "str", "value": "top_right_corner"}, {"type": "str", "value": "top_left_corner"}, {"type": "str", "value": "top_h"}]}}
 
         Example 3:
-        Human prompt: "Go to the bedroom, then to the kitchen, and finally to the office without stopping"
-        JSON response: {"action": "sequence", "params": [{"action": "go_to_goal", "params": {"location": {"type": "str", "value": "bedroom"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "kitchen"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "office"}}}], "continuous_path": true}
+        Human prompt: "Go to bottom left corner, then to top left corner, and finally to top right corner without stopping"
+        JSON response: {"action": "sequence", "params": [{"action": "go_to_goal", "params": {"location": {"type": "str", "value": "bottom_left_corner"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "top_left_corner"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "top_right_corner"}}}], "continuous_path": true}
 
         Example 4:
-        Human prompt: "Navigate to each room in sequence: kitchen, living room, bathroom"
-        JSON response: {"action": "sequence", "params": [{"action": "go_to_goal", "params": {"location": {"type": "str", "value": "kitchen"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "living room"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "bathroom"}}}], "continuous_path": false}
+        Human prompt: "Navigate to each room in sequence: top right, bottom right, top left"
+        JSON response: {"action": "sequence", "params": [{"action": "go_to_goal", "params": {"location": {"type": "str", "value": "top_right_corner"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "bottom_right_corner"}}}, {"action": "go_to_goal", "params": {"location": {"type": "str", "value": "top_left_corner"}}}], "continuous_path": false}
         """
 
         # Try to send the request to the Claude model with comprehensive error handling

@@ -35,6 +35,7 @@ setup(
             'anthropic_nav2_client = rosgpt.ros_anthropic_nav2_client:main',
             'anthropic_nav2_server = rosgpt.ros_anthropic_nav2_server:main',
             'anthropic_nav2_control = rosgpt.ros_anthropic_nav2_control:main',
+            'anthropic_nav2_voice_control = rosgpt.ros_anthropic_nav2_voice_control:main',
         ],
     },
 )

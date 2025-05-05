@@ -45,11 +45,11 @@ class ROSAnthropicNav2Client(Node):
             print('='*50)
             print('Enter a command to navigate the robot.')
             print('Examples:')
-            print('- "Go to the kitchen"')
-            print('- "Navigate to the living room"')
-            print('- "Go to the bedroom, then to the kitchen, and finally to the office" (stops at each point)')
-            print('- "Follow a continuous path through the kitchen, living room, and bedroom" (no stopping)')
-            print('- "Go to the office and directly back to charging station without stopping"')
+            print('- "Go to top_right_corner"')
+            print('- "Navigate to top_h"')
+            print('- "Go to top_right_corner, then to top_left_corner, and finally to top_h" (stops at each point)')
+            print('- "Follow a continuous path through the top_left_corner, top_right_corner, and bottom_h" (no stopping)')
+            print('- "Go to top_h and directly back to bottom_h without stopping"')
             print('-'*50)
             
             # Get user input
