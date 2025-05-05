@@ -3,7 +3,7 @@ ROS packages for ENPM605 (Spring 2025)
 
 # Lecture 14
 
-## ros2-system-monitor
+## System Monitor
 
 - Source: [ros2_system_monitor](https://github.com/AgoraRobotics/ros2-system-monitor)
 ### Build and Run
@@ -18,8 +18,9 @@ ros2 topic echo /diagnostics
 
 ## ROSAnthropic Nav2
 
-A ROS2 package that enables natural language robot navigation using Anthropic's Claude AI and the Navigation2 stack.
 
+A ROS2 package that enables natural language robot navigation using Anthropic's Claude AI and the Navigation2 stack.
+- Source: [rosgpt](https://github.com/aniskoubaa/rosgpt)
 ### Overview
 
 ROSAnthropic Nav2 creates a bridge between natural language commands and robotic navigation. Users can control a ROS2-enabled robot using simple spoken or typed commands such as "Go to top_right_corner" or "Follow a path through the top left corner, top right corner, and bottom h."
@@ -165,3 +166,7 @@ ros2 run rosgpt anthropic_nav2_server
 ros2 run rosgpt anthropic_nav2_client
 
 ```
+
+## Foxglove Studio
+
+- Source: [Foxglove Studio](https://foxglove.dev/)
