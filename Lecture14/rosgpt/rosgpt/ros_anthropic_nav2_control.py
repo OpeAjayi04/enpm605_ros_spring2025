@@ -13,6 +13,7 @@ from std_msgs.msg import String
 import json
 import logging
 import time
+import subprocess
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
@@ -52,13 +53,11 @@ class ROSAnthropicNav2Control(Node):
         # Map of named locations to coordinates (x, y, orientation)
         self.locations = {
             "top_right_corner": (9.5, -9.5, 0.0),
-            "living room": (5.0, 2.0, 0.0),
-            "bedroom": (8.0, 3.0, 0.0),
-            "bathroom": (3.0, 7.0, 0.0),
-            "dining room": (6.0, 6.0, 0.0),
-            "office": (9.0, 5.0, 0.0),
-            "entry": (0.5, 0.5, 0.0),
-            "charging station": (0.0, 0.0, 0.0),
+            "top_left_corner": (9.5, 9.5, 0.0),
+            "bottom_left_corner": (-9.5, 9.5, 0.0),
+            "bottom_right_corner": (-9.5, -9.5, 0.0),
+            "top_h": (-8.97, -12.97, 0.0),
+            "bottom_h": (-7.30, -1.72, 0.0),
         }
         
         # Initialize the navigator
@@ -67,46 +66,50 @@ class ROSAnthropicNav2Control(Node):
         logger.info('ROSAnthropic Nav2 Controller Started. Initializing navigation...')
 
     def _initialize_navigation_callback(self):
-        """Initialize the Nav2 navigation system."""
-        # Cancel the timer so this only runs once
+        """Initialize the Nav2 navigation system with namespace awareness."""
         self._init_timer.cancel()
         
         try:
-            # Create a BasicNavigator instance
+            # List all available nodes to debug
+            nodes_cmd = subprocess.run(['ros2', 'node', 'list'], 
+                                    capture_output=True, text=True)
+            available_nodes = nodes_cmd.stdout.strip().split('\n')
+            self.get_logger().info(f"Available nodes: {available_nodes}")
+            
+            # Create BasicNavigator instance
             self.navigator = BasicNavigator()
+            
+            # Try to find Nav2 nodes with potential namespace variations
+            nav2_nodes = [node for node in available_nodes if 'nav2' in node or 'amcl' in node 
+                        or 'bt_navigator' in node or 'controller_server' in node 
+                        or 'planner_server' in node]
+            
+            if nav2_nodes:
+                self.get_logger().info(f"Found potential Nav2 nodes: {nav2_nodes}")
+            else:
+                self.get_logger().error("No Nav2 nodes found. Is Nav2 running?")
+                self._init_timer = self.create_timer(5.0, self._initialize_navigation_callback)
+                return
             
             # Set initial pose
             self.localize()
             
-            # Create a timeout mechanism ourselves since the built-in one isn't available
-            start_time = time.time()
-            timeout = 10.0  # 10 second timeout
-            
+            # Use waitUntilNav2Active with a more flexible approach
             try:
-                # Try to wait for Nav2 to become active with our own timeout
-                self.get_logger().info("Waiting for Nav2 to become active...")
-                while time.time() - start_time < timeout:
-                    if self.navigator._waitForNodeToActivate('amcl'):
-                        break
-                    time.sleep(0.5)
-                
-                # Check if we timed out
-                if time.time() - start_time >= timeout:
-                    self.get_logger().warn("Nav2 did not become active in the expected timeframe. Will retry initialization later.")
-                    self._init_timer = self.create_timer(5.0, self._initialize_navigation_callback)
-                    return
-                
-                # Wait for Nav2 to be ready (with standard method that doesn't take timeout)
+                self.get_logger().info("Waiting for Nav2 to fully activate...")
+                self.navigator.waitUntilNav2Active(timeout=10.0)  # Try with timeout if supported
+                self.get_logger().info('Navigation initialized successfully!')
+            except TypeError:
+                # If timeout param not supported, try without it
                 self.navigator.waitUntilNav2Active()
-                self.get_logger().info('Navigation initialized successfully. Waiting for commands...')
+                self.get_logger().info('Navigation initialized successfully!')
             except Exception as e:
-                self.get_logger().warn(f"Error waiting for Nav2: {str(e)}. Will retry initialization.")
+                self.get_logger().error(f"Nav2 activation error: {str(e)}")
                 self._init_timer = self.create_timer(5.0, self._initialize_navigation_callback)
                 return
                 
         except Exception as e:
-            self.get_logger().error(f"Failed to initialize navigation: {str(e)}")
-            # Try again after a delay
+            self.get_logger().error(f"Navigation initialization error: {str(e)}")
             self._init_timer = self.create_timer(5.0, self._initialize_navigation_callback)
 
     def localize(self):
